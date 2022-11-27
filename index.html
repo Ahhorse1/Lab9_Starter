@@ -99,10 +99,129 @@
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
-
+    
     // Start your code here
     // You may move this JS to another file if you wish
+
+    window.onerror = function(message, url, line, col, error) {
+      console.log(`Global Error Handler has Caught:\n ${message}\n At ${line}:${col} of ${url}`);
+    }
+    let consoleLog = errorBtns[0];
+    consoleLog.addEventListener('click', e => {
+      console.log('Button: Console Log');
+    });
+
+    let consoleError  = errorBtns[1];
+    consoleError.addEventListener('click', e => {
+      console.error('Button: Console Error');
+    });
+
+    let consoleCount = errorBtns[2];
+    consoleCount.addEventListener('click', e => {
+      console.count('Button: Console Count');
+    });
+
+    let consoleWarn = errorBtns[3];
+    consoleWarn.addEventListener('click', e => {
+      console.warn('Button: Console Warn');
+    });
+
+    let consoleAssert = errorBtns[4];
+    consoleAssert.addEventListener('click', e => {
+      let x = 0;
+      let y = 1;
+      let reason = 'x is not 1';
+      console.assert(x == y, reason);
+    });
+
+    let consoleClear = errorBtns[5];
+    consoleClear.addEventListener('click', e => {
+      console.clear();
+    });
+
+    let consoleDir = errorBtns[6];
+    consoleDir.addEventListener('click', e => {
+      console.dir(consoleDir);
+    });
+
+    let consoleDirXMl = errorBtns[7];
+    consoleDirXMl.addEventListener('click', e => {
+      console.dirxml(consoleDirXMl);
+    });
+
+    let consoleGroupStart = errorBtns[8];
+    consoleGroupStart.addEventListener('click', e => {
+      console.group('Button: Console Group Started');
+    });
+
+    let consoleGroupEnd = errorBtns[9];
+    consoleGroupEnd.addEventListener('click', e => {
+      console.groupEnd('Button: Console Group Ended');
+    });
+
+    let consoleTable = errorBtns[10];
+    consoleTable.addEventListener('click', e => {
+      let planeTable = [
+        {
+          manufacturer: 'Boeing',
+          aircraft_type: '747-400',
+        },
+        {
+          manufacturer: 'Boeing',
+          aircraft_type: '787-800',
+        },
+        {
+          manufacturer: 'Airbus',
+          aircraft_type: 'A380-800',
+        }
+      ];
+      console.table(planeTable);
+    });
+
+    let startTimer = errorBtns[11];
+    startTimer.addEventListener('click', e => {
+      console.time('Button: Timer');
+    });
+
+    let endTimer = errorBtns[12];
+    endTimer.addEventListener('click', e => {
+      console.timeEnd('Button: Timer');
+    });
+
+    let consoleTrace = errorBtns[13];
+    consoleTrace.addEventListener('click', e => {
+      const deep = () => {
+        deeper();
+      }
+      const deeper = () => {
+        deepest();
+      }
+      const deepest = () => {
+        console.trace('Button: Console Trace');
+      }
+      deep();
+    });
+
+    let globalError = errorBtns[14];
+    globalError.addEventListener('click', e => {
+      boom();
+    });
+
+    try {
+      aintGonnaWork();
+    }
+    catch (err){
+      console.log(err);
+    }
   </script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "e28979a53813436a9495391f04434ff1"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+                          
 </body>
 
 </html>
